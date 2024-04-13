@@ -10,15 +10,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_10_141242) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_13_221528) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carts", force: :cascade do |t|
+    t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "id_id"
+    t.index ["id_id"], name: "index_carts_on_id_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
     t.string "type"
     t.bigint "id_id"
     t.index ["id_id"], name: "index_categories_on_id_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+    t.text "adress"
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "id_id"
+    t.index ["id_id"], name: "index_customers_on_id_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "cart_id"
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "id_id"
+    t.index ["id_id"], name: "index_orders_on_id_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "order_id"
+    t.integer "cart_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -28,7 +64,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_141242) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "categories_id"
+    t.bigint "id_id"
+    t.index ["id_id"], name: "index_products_on_id_id"
   end
 
+  create_table "shipments", force: :cascade do |t|
+    t.integer "customer_id"
+    t.date "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "carts", "products"
+  add_foreign_key "orders", "carts"
+  add_foreign_key "orders", "customers"
+  add_foreign_key "payments", "carts"
+  add_foreign_key "payments", "customers"
+  add_foreign_key "payments", "orders"
   add_foreign_key "products", "categories", column: "categories_id"
+  add_foreign_key "shipments", "customers"
 end
