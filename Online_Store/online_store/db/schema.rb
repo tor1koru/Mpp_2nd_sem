@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_13_221528) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_14_185320) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,25 +18,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_13_221528) do
     t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "id_id"
-    t.index ["id_id"], name: "index_carts_on_id_id"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
-    t.string "type"
-    t.bigint "id_id"
-    t.index ["id_id"], name: "index_categories_on_id_id"
+    t.string "category_type"
   end
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
-    t.text "adress"
+    t.text "address"
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "id_id"
-    t.index ["id_id"], name: "index_customers_on_id_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -45,8 +39,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_13_221528) do
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "id_id"
-    t.index ["id_id"], name: "index_orders_on_id_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -64,8 +56,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_13_221528) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "categories_id"
-    t.bigint "id_id"
-    t.index ["id_id"], name: "index_products_on_id_id"
   end
 
   create_table "shipments", force: :cascade do |t|
