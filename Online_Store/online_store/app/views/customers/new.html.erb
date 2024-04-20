@@ -1,0 +1,40 @@
+<!-- app/views/customers/new.html.erb -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customer Profile</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Онлайн магазин</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../products/index">Продукти</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="cart.html">Кошик</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../customers/new">Покупець</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contact.html">Контакти</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <h2>Customer Profile</h2>
+  <%= render 'form', customer: @customers %>
+</div>
+
+</body>
+</html>
