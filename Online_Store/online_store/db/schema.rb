@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_14_192049) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_20_215438) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_14_192049) do
 
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
+  end
+
+  create_table "customer_profiles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -58,6 +63,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_14_192049) do
   add_foreign_key "payments", "carts"
   add_foreign_key "payments", "customers"
   add_foreign_key "payments", "orders"
-  add_foreign_key "products", "categories", column: "categories_id"
   add_foreign_key "shipments", "customers"
 end
